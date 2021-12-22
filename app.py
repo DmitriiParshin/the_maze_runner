@@ -53,7 +53,7 @@ def bedroom():
             flash('Ты туда не попадёшь')
         elif way == 1:
             if step == 1:
-                return redirect(url_for('living_room'))
+                return redirect(url_for('livingroom'))
             elif step == 2:
                 return redirect(url_for('kitchen'))
             else:
@@ -68,47 +68,116 @@ def bedroom():
     return render_template('go.html', form=form)
 
 
-@app.route('/runner/living_room', methods=['get', 'post'])
-def living_room():
+@app.route('/runner/livingroom', methods=['get', 'post'])
+def livingroom():
     form = RunnerForm()
     flash('Ты находишься в Гостиной!')
     if form.validate_on_submit():
         way = form.way.data
         step = form.num_steps.data
         if way == 0:
-            flash('Ты туда не попадёшь')
+            if step == 1:
+                flash('Ты выбрался из подземелья!!!')
+                return redirect(url_for('hi'))
+            else:
+                flash('Ты туда не попадёшь')
         elif way == 1:
-            flash('Ты выбрался из подземелья!!!')
-            return redirect(url_for('hi'))
+            if step == 1:
+                return redirect(url_for('kitchen'))
+            else:
+                flash('Ты туда не попадёшь')
         elif way == 2:
             if step == 1:
-                return redirect(url_for('runner'))
+                return redirect(url_for('hallway'))
             else:
                 flash('Ты туда не попадёшь')
         else:
-            flash('Ты туда не попадёшь')
+            if step == 1:
+                return redirect(url_for('bedroom'))
+            else:
+                flash('Ты туда не попадёшь')
     return render_template('go.html', form=form)
 
 
 @app.route('/runner/kitchen', methods=['get', 'post'])
-def living_room():
+def kitchen():
     form = RunnerForm()
-    flash('Ты находишься в Гостиной!')
+    flash('Ты находишься в Кухне!')
     if form.validate_on_submit():
         way = form.way.data
         step = form.num_steps.data
         if way == 0:
             flash('Ты туда не попадёшь')
         elif way == 1:
-            flash('Ты выбрался из подземелья!!!')
-            return redirect(url_for('hi'))
+            flash('Ты туда не попадёшь')
         elif way == 2:
             if step == 1:
-                return redirect(url_for('runner'))
+                return redirect(url_for('bathroom'))
             else:
                 flash('Ты туда не попадёшь')
         else:
+            if step == 1:
+                return redirect(url_for('livingroom'))
+            elif step == 2:
+                return redirect(url_for('bedroom'))
+            else:
+                flash('Ты туда не попадёшь')
+    return render_template('go.html', form=form)
+
+
+@app.route('/runner/bathroom', methods=['get', 'post'])
+def bathroom():
+    form = RunnerForm()
+    flash('Ты находишься в Туалете!')
+    if form.validate_on_submit():
+        way = form.way.data
+        step = form.num_steps.data
+        if way == 0:
+            if step == 1:
+                return redirect(url_for('kitchen'))
+            else:
+                flash('Ты туда не попадёшь')
+        elif way == 1:
             flash('Ты туда не попадёшь')
+        elif way == 2:
+            flash('Ты туда не попадёшь')
+        else:
+            if step == 1:
+                return redirect(url_for('hallway'))
+            elif step == 2:
+                return redirect(url_for('running'))
+            else:
+                flash('Ты туда не попадёшь')
+    return render_template('go.html', form=form)
+
+
+@app.route('/runner/hallway', methods=['get', 'post'])
+def hallway():
+    form = RunnerForm()
+    flash('Ты находишься в Коридоре!')
+    if form.validate_on_submit():
+        way = form.way.data
+        step = form.num_steps.data
+        if way == 0:
+            if step == 1:
+                return redirect(url_for('livingroom'))
+            elif step == 2:
+                flash('Ты выбрался из подземелья!!!')
+                return redirect(url_for('hi'))
+            else:
+                flash('Ты туда не попадёшь')
+        elif way == 1:
+            if step == 1:
+                return redirect(url_for('bathroom'))
+            else:
+                flash('Ты туда не попадёшь')
+        elif way == 2:
+            flash('Ты туда не попадёшь')
+        else:
+            if step == 1:
+                return redirect(url_for('running'))
+            else:
+                flash('Ты туда не попадёшь')
     return render_template('go.html', form=form)
 
 
