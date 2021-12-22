@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}The maze runner{% endblock %}</title>
+</head>
+<body>
+  {% block menu %}
+    <nav>
+        <a href="/">AGAIN</a>
+    </nav>
+  {% endblock %}
+
+  {% block content %}
+
+  {% endblock %}
+</body>
+</html>
+
+{% block scripts %}
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css"/>
+{% endblock %}
