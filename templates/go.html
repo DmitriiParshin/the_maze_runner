@@ -3,7 +3,8 @@
 
 {% block content %}
     {% for msg in get_flashed_messages() %}
-        {{msg}}
+        <h1>{{ msg }}</h1>
+        <br>
     {% endfor %}
     <form action="" method="post">
         {{ form.hidden_tag() }}

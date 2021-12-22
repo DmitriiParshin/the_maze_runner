@@ -77,8 +77,7 @@ def livingroom():
         step = form.num_steps.data
         if way == 0:
             if step == 1:
-                flash('Ты выбрался из подземелья!!!')
-                return redirect(url_for('hi'))
+                flash('ПОЗДРАВЛЯЮ, ты выбрался из Подземелья на Балкон!!!')
             else:
                 flash('Ты туда не попадёшь')
         elif way == 1:
@@ -145,7 +144,7 @@ def bathroom():
             if step == 1:
                 return redirect(url_for('hallway'))
             elif step == 2:
-                return redirect(url_for('running'))
+                return redirect(url_for('runner'))
             else:
                 flash('Ты туда не попадёшь')
     return render_template('go.html', form=form)
@@ -162,8 +161,7 @@ def hallway():
             if step == 1:
                 return redirect(url_for('livingroom'))
             elif step == 2:
-                flash('Ты выбрался из подземелья!!!')
-                return redirect(url_for('hi'))
+                flash('ПОЗДРАВЛЯЮ, ты выбрался из Подземелья на Балкон!!!')
             else:
                 flash('Ты туда не попадёшь')
         elif way == 1:
